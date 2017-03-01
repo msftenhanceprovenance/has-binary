@@ -73,5 +73,10 @@ describe('has-binarydata', function () {
     it('should work with a Blob', function () {
       assert(hasBinary(new Blob()));
     });
+  } else {
+    it('should not crash if global Blob is not a function', function () {
+      global.Blob = [ 1, 2, 3 ];
+      assert(!hasBinary(global.Blob));
+    });
   }
 });
